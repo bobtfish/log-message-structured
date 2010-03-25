@@ -21,9 +21,10 @@ role {
     my $format_string = $p->format_string;
     my @attributes = $p->attributes->flatten;
 
-    requires $_ for @attributes;
+#   FIXME - Moose bug..
+#    requires $_ for @attributes;
 
-    method as_string => sub {
+    method stringify => sub {
         my $self = shift;
         sprintf($format_string, map { $self->$_ } @attributes);
     };
