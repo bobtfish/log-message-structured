@@ -7,7 +7,7 @@ use Sys::Hostname ();
 use namespace::clean -except => 'meta';
 
 use overload
-    q{""}    => 'as_string',
+    q{""}    => 'stringify',
     fallback => 1;
 
 with Storage('format' => 'JSON');
@@ -24,7 +24,7 @@ has hostname => (
     default => sub { Sys::Hostname::hostname() },
 );
 
-requires 'as_string';
+requires 'stringify';
 
 1;
 
