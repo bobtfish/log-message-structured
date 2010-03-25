@@ -15,6 +15,7 @@ requires 'MooseX::Types::Common';
 requires 'DateTime';
 requires 'Sys::Hostname';
 requires 'JSON::Any';
+requires 'namespace::clean';
 requires 'namespace::autoclean';
 
 test_requires 'Test::More' => '0.88';

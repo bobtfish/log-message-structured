@@ -4,3 +4,4 @@ Makefile
 inc
 blib
 Log-Message-Structured*
+pm_to_blib
