@@ -15,7 +15,7 @@ with Storage('format' => 'JSON');
 has date => (
     is => 'ro',
     isa => ISO8601DateTimeStr,
-    default => sub { DateTime->new },
+    default => sub { DateTime->now },
     coerce => 1,
 );
 

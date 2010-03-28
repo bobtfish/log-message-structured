@@ -4,7 +4,7 @@ use namespace::autoclean;
 
 requires 'freeze';
 
-sub as_string { shift->freeze }
+sub stringify { shift->freeze }
 
 1;
 
