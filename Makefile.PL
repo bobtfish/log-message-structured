@@ -9,7 +9,7 @@ all_from 'lib/Log/Message/Structured.pm';
 requires 'Moose';
 requires 'MooseX::Storage' => '0.26';
 requires 'MooseX::Role::WithOverloading';
-requires 'MooseX::Types::ISO8601';
+requires 'MooseX::Types::ISO8601' => '0.02';
 requires 'MooseX::Role::Parameterized';
 requires 'Moose::Autobox';
 requires 'MooseX::Types';
