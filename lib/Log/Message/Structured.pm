@@ -6,7 +6,7 @@ use MooseX::Types::ISO8601 qw/ ISO8601DateTimeStr /;
 use Sys::Hostname ();
 use namespace::clean -except => 'meta';
 
-our $VERSION = '0.001';
+our $VERSION = '0.002';
 $VERSION = eval $VERSION;
 
 use overload

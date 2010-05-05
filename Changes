@@ -1,3 +1,6 @@
+0.002
+  - Fix docs for Stringify::Sprintf
+
 0.001
   - Initial version with the very basic roles extracted (and abstracted) from
     state51 code (with permission).
