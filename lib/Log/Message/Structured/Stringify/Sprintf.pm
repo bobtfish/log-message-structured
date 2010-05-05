@@ -38,7 +38,7 @@ role {
 
 =head1 NAME
 
-Log::Message::Structured::Sprintf - Traditional style log lines
+Log::Message::Structured::Stringify::Sprintf - Traditional style log lines
 
 =head1 SYNOPSIS
 
