@@ -15,16 +15,20 @@ use overload
 
 with Storage('format' => 'JSON');
 
+my $GETOPT = do { local $@; Class::MOP::load_class('MooseX::Getopt'); 1 };
+
 has date => (
     is => 'ro',
     isa => ISO8601DateTimeStr,
     default => sub { DateTime->now },
     coerce => 1,
+    $GETOPT ? ( traits => [qw/ NoGetopt /] ) : (),
 );
 
 has hostname => (
     is => 'ro',
     default => sub { Sys::Hostname::hostname() },
+    $GETOPT ? ( traits => [qw/ NoGetopt /] ) : (),
 );
 
 requires 'stringify';
