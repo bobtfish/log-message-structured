@@ -1,3 +1,7 @@
+  - Fix Log::Message::Structured::Stringify::Sprintf warnings when values
+    in the sprintf string are undef. They are now literally printed as
+    'undef'
+
 0.002
   - Fix docs for Stringify::Sprintf
 

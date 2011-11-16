@@ -28,7 +28,7 @@ role {
         my $self = shift;
         # FIXME - Find the correct reader name rather than assuming
         #         attribute name == accessor name.
-        sprintf($format_string, map { $self->$_ } @attributes);
+        sprintf($format_string, map { my $val = $self->$_; $val = 'undef' unless defined $val; $val } @attributes);
     };
 };
 
