@@ -1,3 +1,6 @@
+0.004
+  - Fix when MooseX::Getopt is not present.
+
 0.003
   - Add an epochtime field with the simple time in epocseconds for easy
     and cheap comparison without having to parse the 8601 time.
