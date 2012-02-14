@@ -1,3 +1,7 @@
+
+  - Add an epochtime field with the simple time in epocseconds for easy
+    and cheap comparison without having to parse the 8601 time.
+
   - Fix Log::Message::Structured::Stringify::Sprintf warnings when values
     in the sprintf string are undef. They are now literally printed as
     'undef'

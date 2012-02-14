@@ -17,10 +17,21 @@ with Storage('format' => 'JSON');
 
 my $GETOPT = do { local $@; Class::MOP::load_class('MooseX::Getopt'); 1 };
 
+has epochtime => (
+    isa => 'Int',
+    is => 'ro',
+    default => sub { time() },
+    $GETOPT ? ( traits => [qw/ NoGetopt /] ) : (),
+);
+
+sub BUILD {}
+after BUILD => sub { shift()->date };
+
 has date => (
     is => 'ro',
     isa => ISO8601DateTimeStr,
-    default => sub { DateTime->now },
+    lazy => 1,
+    default => sub { DateTime->from_epoch(epoch => shift()->epochtime) },
     coerce => 1,
     $GETOPT ? ( traits => [qw/ NoGetopt /] ) : (),
 );
