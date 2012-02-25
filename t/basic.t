@@ -15,7 +15,7 @@ use Test::More;
 my $e = TestEvent->new(foo => 2);
 ok $e;
 is $e.'', 'MOO';
-foreach my $meth (qw/ freeze thaw pack unpack /) {
+foreach my $meth (qw/ freeze thaw pack unpack epochtime date hostname /) {
     ok $e->can($meth);
 }
 

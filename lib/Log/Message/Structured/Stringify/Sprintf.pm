@@ -21,8 +21,7 @@ role {
     my $format_string = $p->format_string;
     my @attributes = $p->attributes->flatten;
 
-#   FIXME - Moose bug..
-#    requires $_ for @attributes;
+    requires $_ for grep { ! /^(hostname|date|epochtime)$/ } @attributes;
 
     method stringify => sub {
         my $self = shift;
@@ -46,22 +45,20 @@ Log::Message::Structured::Stringify::Sprintf - Traditional style log lines
     use Moose;
     use namespace::autoclean;
 
-    # Note: you MUST compose these seperately (due to a bug in Moose right now)
-    #       and in this order (so that the stringify method is present before it's required)
+    has [qw/ foo bar /] => ( is => 'ro', required => 1 );
+
+    # Note: you MUST compose these together and after defining your attributes!
     with 'Log::Message::Structured::Stringify::Sprintf' => {
         format_string => q{The value of foo is "%s" and the value of bar is "%s"},
         attributes => [qw/ foo bar /],
-    };
-    with 'Log::Message::Structured';
-
-    has [qw/ foo bar /] => ( is => 'ro', required => 1 );
+    }, 'Log::Message::Structured';
 
     ... elsewhere ...
 
     use aliased 'My::Log::Event';
 
-    $logger->log(message => Event->new( foo => "ONE MILLION", bar => "ONE BILLION" ));
-    # Logs:
+    $logger->log(Event->new( foo => "ONE MILLION", bar => "ONE BILLION" ));
+    # Logs an object which will stringify to:
     The value of foo is "ONE MILLION" and the value of bar is "ONE BILLION".
 
 =head1 DESCRIPTION
@@ -89,3 +86,4 @@ Tomas Doran (t0m) C<< <bobtfish@bobtfish.net> >>.
 Licensed under the same terms as perl itself.
 
 =cut
+

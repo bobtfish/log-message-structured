@@ -5,13 +5,14 @@ use Test::More;
 {
     package TestEventSprintf;
     use Moose;
+
+    has [qw/foo bar baz/] => ( is => 'ro', required => 1);
+
     with 'Log::Message::Structured::Stringify::Sprintf' => {
         format_string => "%s lala %s baba %s caca",
         attributes => [qw/ foo bar baz /],
-    };
-    with 'Log::Message::Structured';
+    }, 'Log::Message::Structured';
 
-    has [qw/foo bar baz/] => ( is => 'ro', required => 1);
 }
 
 my $exp = '2 lala 3 baba 4 caca';

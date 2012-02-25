@@ -1,3 +1,10 @@
+0.005
+  - Require new version of Moose, which fixes the issues with
+    Log::Message::Structured::Stringify::Sprintf.
+    Clean these issues up and fix the documentation to compose
+    roles together, not seperately.
+  - Document issues with namespace::autoclean
+
 0.004
   - Fix when MooseX::Getopt is not present.
 

@@ -45,6 +45,10 @@ ATTRIBUTES
     The host name of the host the event was generated on. Defaults to the
     hostname as returned by Sys::Hostname.
 
+epochtime
+    The date and time on which the event occurred, as an no of seconds since
+    Jan 1st 1970 (i.e. the output of time())
+
 date
     The date and time on which the event occured, as an ISO8601 date time
     string (from MooseX::Types::ISO8601). Defaults to the time the object is
@@ -72,6 +76,10 @@ REQUIRED METHODS
     for all Log::Message::Structured events. This is so that events will
     always be meaningfully loggable be printing them to STDOUT or STDERR, or
     logging them in a traditional way in a file.
+
+SEE ALSO
+    Log::Message::Structured::Stringify::Sprintf
+    Log::Message::Structured::Stringify::JSON
 
 AUTHOR AND COPYRIGHT
     Tomas Doran (t0m) "<bobtfish@bobtfish.net>".

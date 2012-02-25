@@ -96,6 +96,10 @@ The basic Log::Message::Structured role provides the following read only attribu
 
 The host name of the host the event was generated on. Defaults to the hostname as returned by L<Sys::Hostname>.
 
+=head1 epochtime
+
+The date and time on which the event occurred, as an no of seconds since Jan 1st 1970 (i.e. the output of time())
+
 =head1 date
 
 The date and time on which the event occured, as an ISO8601 date time string (from L<MooseX::Types::ISO8601>).
@@ -122,6 +126,11 @@ Return the instance data as a plain data structure (hashref).
 
 Inflate an instance from a plain data structure (hashref).
 
+=head2 BUILD
+
+An empty build method (which will be silently discarded if you have one in your class) is provided,
+and is wrapped to make sure all attributes are inflated at construction time.
+
 =head1 REQUIRED METHODS
 
 =head2 stringify
@@ -129,6 +138,24 @@ Inflate an instance from a plain data structure (hashref).
 You B<must> implement a stringify method, or compose a stringification role for all L<Log::Message::Structured>
 events. This is so that events will always be meaningfully loggable be printing them to STDOUT or STDERR,
 or logging them in a traditional way in a file.
+
+=head1 A note about namespace::autoclean
+
+L<namespace::autoclean> does not work correctly with roles that supply overloading. Therefore you should instead use:
+
+    use namespace::clean -except => 'meta';
+
+instead in all classes using L<Log::Message::Structured>.
+
+=head1 SEE ALSO
+
+=over
+
+=item L<Log::Message::Structured::Stringify::Sprintf>
+
+=item L<Log::Message::Structured::Stringify::JSON>
+
+=back
 
 =head1 AUTHOR AND COPYRIGHT
 
