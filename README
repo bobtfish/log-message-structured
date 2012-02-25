@@ -70,12 +70,25 @@ METHODS
   pack
     Inflate an instance from a plain data structure (hashref).
 
+  BUILD
+    An empty build method (which will be silently discarded if you have one
+    in your class) is provided, and is wrapped to make sure all attributes
+    are inflated at construction time.
+
 REQUIRED METHODS
   stringify
     You must implement a stringify method, or compose a stringification role
     for all Log::Message::Structured events. This is so that events will
     always be meaningfully loggable be printing them to STDOUT or STDERR, or
     logging them in a traditional way in a file.
+
+A note about namespace::autoclean
+    namespace::autoclean does not work correctly with roles that supply
+    overloading. Therefore you should instead use:
+
+        use namespace::clean -except => 'meta';
+
+    instead in all classes using Log::Message::Structured.
 
 SEE ALSO
     Log::Message::Structured::Stringify::Sprintf
