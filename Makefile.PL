@@ -16,7 +16,7 @@ requires 'MooseX::Types';
 requires 'MooseX::Types::Common';
 requires 'DateTime';
 requires 'Sys::Hostname';
-requires 'JSON::Any';
+requires 'JSON';
 requires 'namespace::clean';
 requires 'namespace::autoclean';
 
