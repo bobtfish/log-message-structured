@@ -12,6 +12,7 @@ use Test::More;
         format_string => "%s lala %s baba %s caca",
         attributes => [qw/ foo bar baz /],
     }, 'Log::Message::Structured';
+    with qw(Log::Message::Structured::Component::Date);
 
 }
 
