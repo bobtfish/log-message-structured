@@ -15,6 +15,7 @@ SYNOPSIS
         # Components must be consumed seperately
         with qw/
             Log::Message::Structured::Component::Date
+            Log::Message::Structured::Component::Hostname
         /;
 
         has foo => ( is => 'ro', required => 1 );
@@ -48,13 +49,11 @@ COMPONENTS
 
     *   Log::Message::Structured::Component::Date
 
+    *   Log::Message::Structured::Component::Hostname
+
 ATTRIBUTES
     The basic Log::Message::Structured role provides the following read only
     attributes:
-
-  hostname
-    The host name of the host the event was generated on. Defaults to the
-    hostname as returned by Sys::Hostname.
 
 epochtime
     The date and time on which the event occurred, as an no of seconds since
@@ -75,11 +74,6 @@ METHODS
 
   pack
     Inflate an instance from a plain data structure (hashref).
-
-  BUILD
-    An empty build method (which will be silently discarded if you have one
-    in your class) is provided, and is wrapped to make sure all attributes
-    are inflated at construction time.
 
 REQUIRED METHODS
   stringify
