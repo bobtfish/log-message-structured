@@ -22,6 +22,18 @@ with 'Log::Message::Structured::Stringify::Sprintf' => {
     format_string => q{Script %s run on %s for %ss},
     attributes => [qw/ script_name hostname time /],
 }, 'Log::Message::Structured';
+with qw(Log::Message::Structured::Component::Date);
+with qw(Log::Message::Structured::Component::Hostname);
+
+=head1 NAME
+
+Log::Message::Structured::Event::ScriptRun
+
+=head1 DESCRIPTION
+
+Some Event.
+
+=cut
 
 __PACKAGE__->meta->make_immutable;
 1;

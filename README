@@ -12,6 +12,11 @@ SYNOPSIS
             Log::Message::Structured
             Log::Message::Structured::Stringify::AsJSON
         /;
+        # Components must be consumed seperately
+        with qw/
+            Log::Message::Structured::Component::Date
+            Log::Message::Structured::Component::Hostname
+        /;
 
         has foo => ( is => 'ro', required => 1 );
 
@@ -37,22 +42,22 @@ DESCRIPTION
     log in a traditional manor as a log line, or serialize to JSON for
     transmission over the network.
 
+COMPONENTS
+    The consuming class can include components, that will provide additional
+    attributes. Here is a list of the components included in the basic
+    distribution. More third party components may be available on CPAN.
+
+    *   Log::Message::Structured::Component::Date
+
+    *   Log::Message::Structured::Component::Hostname
+
 ATTRIBUTES
     The basic Log::Message::Structured role provides the following read only
     attributes:
 
-  hostname
-    The host name of the host the event was generated on. Defaults to the
-    hostname as returned by Sys::Hostname.
-
 epochtime
     The date and time on which the event occurred, as an no of seconds since
     Jan 1st 1970 (i.e. the output of time())
-
-date
-    The date and time on which the event occured, as an ISO8601 date time
-    string (from MooseX::Types::ISO8601). Defaults to the time the object is
-    constructed.
 
 METHODS
     The only non-accessor methods provided are those composed from
@@ -69,11 +74,6 @@ METHODS
 
   pack
     Inflate an instance from a plain data structure (hashref).
-
-  BUILD
-    An empty build method (which will be silently discarded if you have one
-    in your class) is provided, and is wrapped to make sure all attributes
-    are inflated at construction time.
 
 REQUIRED METHODS
   stringify
