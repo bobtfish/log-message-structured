@@ -7,6 +7,7 @@ use Test::More;
     use Moose;
     with qw(Log::Message::Structured);
     with qw(Log::Message::Structured::Component::Date);
+    with qw(Log::Message::Structured::Component::Hostname);
 
     sub stringify { 'MOO' }
 

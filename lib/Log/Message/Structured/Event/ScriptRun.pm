@@ -23,6 +23,7 @@ with 'Log::Message::Structured::Stringify::Sprintf' => {
     attributes => [qw/ script_name hostname time /],
 }, 'Log::Message::Structured';
 with qw(Log::Message::Structured::Component::Date);
+with qw(Log::Message::Structured::Component::Hostname);
 
 =head1 NAME
 
