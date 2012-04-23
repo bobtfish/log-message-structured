@@ -37,6 +37,9 @@ Log::Message::Structured::Component::Date
     # Note: you MUST compose these together as they depend on methods in each other
     with qw/
         Log::Message::Structured
+    /;
+    # Components must be consumed seperately
+    with qw/
         Log::Message::Structured::Component::Date
     /;
 
