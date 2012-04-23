@@ -24,6 +24,16 @@ with 'Log::Message::Structured::Stringify::Sprintf' => {
 }, 'Log::Message::Structured';
 with qw(Log::Message::Structured::Component::Date);
 
+=head1 NAME
+
+Log::Message::Structured::Event::ScriptRun
+
+=head1 DESCRIPTION
+
+Some Event.
+
+=cut
+
 __PACKAGE__->meta->make_immutable;
 1;
 
