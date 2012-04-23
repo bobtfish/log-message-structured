@@ -1,7 +1,6 @@
 package Log::Message::Structured;
 use MooseX::Role::WithOverloading;
 use MooseX::Storage;
-use Sys::Hostname ();
 use namespace::clean -except => 'meta';
 
 our $VERSION = '0.006';
@@ -24,12 +23,6 @@ has epochtime => (
 
 sub BUILD {}
 after BUILD => sub { shift()->date };
-
-has hostname => (
-    is => 'ro',
-    default => sub { Sys::Hostname::hostname() },
-    $GETOPT ? ( traits => [qw/ NoGetopt /] ) : (),
-);
 
 requires 'stringify';
 
@@ -58,6 +51,7 @@ Log::Message::Structured - Simple structured log messages
     # Components must be consumed seperately
     with qw/
         Log::Message::Structured::Component::Date
+        Log::Message::Structured::Component::Hostname
     /;
 
     has foo => ( is => 'ro', required => 1 );
@@ -98,10 +92,6 @@ L<Log::Message::Structured::Component::Date>
 =head1 ATTRIBUTES
 
 The basic Log::Message::Structured role provides the following read only attributes:
-
-=head2 hostname
-
-The host name of the host the event was generated on. Defaults to the hostname as returned by L<Sys::Hostname>.
 
 =head1 epochtime
 
