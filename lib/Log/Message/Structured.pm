@@ -87,6 +87,10 @@ distribution. More third party components may be available on CPAN.
 
 L<Log::Message::Structured::Component::Date>
 
+=item *
+
+L<Log::Message::Structured::Component::Hostname>
+
 =back
 
 =head1 ATTRIBUTES
