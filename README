@@ -75,6 +75,11 @@ METHODS
   pack
     Inflate an instance from a plain data structure (hashref).
 
+  BUILD
+    An empty build method (which will be silently discarded if you have one
+    in your class) is provided, so that additional components can wrap it
+    (to farce lazy attributes to be built).
+
 REQUIRED METHODS
   stringify
     You must implement a stringify method, or compose a stringification role
