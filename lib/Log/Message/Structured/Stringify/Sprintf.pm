@@ -21,7 +21,7 @@ role {
     my $format_string = $p->format_string;
     my @attributes = $p->attributes->flatten;
 
-    requires $_ for grep { $_ ne 'epochtime' } @attributes;
+    requires $_ for grep { $_ ne 'previous_string' } @attributes;
 
     has previous_string => (
         isa => 'Str',
