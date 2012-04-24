@@ -1,3 +1,4 @@
+0.006
   - Pull date and hostname attributes out into their own components,
     making them optional (dams).
   - Additional documentation.
