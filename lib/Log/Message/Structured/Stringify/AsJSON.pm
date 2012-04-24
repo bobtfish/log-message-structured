@@ -4,7 +4,13 @@ use namespace::autoclean;
 
 requires 'freeze';
 
-sub stringify { shift->freeze }
+around 'stringify' => sub {
+    my $orig = shift;
+    my $self = shift;
+    $self->freeze
+};
+
+#sub stringify { shift->freeze }
 
 1;
 

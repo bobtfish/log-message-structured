@@ -23,7 +23,7 @@ has epochtime => (
 
 sub BUILD {}
 
-requires 'stringify';
+sub stringify { '' }
 
 1;
 
