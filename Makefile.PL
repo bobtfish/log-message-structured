@@ -2,9 +2,11 @@ use strict;
 use inc::Module::Install 0.91;
 use Module::Install::AuthorTests;
 use Module::Install::AuthorRequires;
+use Module::Install::Authority;
 
 name 'Log-Message-Structured';
 all_from 'lib/Log/Message/Structured.pm';
+authority 'BOBTFISH';
 
 requires 'Moose' => '2.0';
 requires 'MooseX::Storage' => '0.26';
