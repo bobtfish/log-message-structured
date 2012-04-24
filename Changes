@@ -1,3 +1,8 @@
+  - Pull date and hostname attributes out into their own components,
+    making them optional (dams).
+  - Additional documentation.
+  - Drop unused dependency on JSON::Any
+
 0.005
   - Require new version of Moose, which fixes the issues with
     Log::Message::Structured::Stringify::Sprintf.
