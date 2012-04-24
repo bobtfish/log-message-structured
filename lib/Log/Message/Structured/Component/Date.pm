@@ -16,7 +16,6 @@ has date => (
     $GETOPT ? ( traits => [qw/ NoGetopt /] ) : (),
 );
 
-sub BUILD {}
 after BUILD => sub { shift()->date };
 
 requires 'epochtime';
@@ -67,8 +66,8 @@ Requires the C<epochtime> attribute (L<Log::Message::Structured> provides it).
 
 =head2 BUILD
 
-An empty build method (which will be silently discarded if you have one in your class) is provided,
-and is wrapped to make sure the date is inflated at construction time.
+The BUILD method is wrapped to make sure the date is inflated at
+construction time.
 
 =head1 ATTRIBUTES
 

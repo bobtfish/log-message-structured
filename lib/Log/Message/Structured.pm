@@ -21,6 +21,8 @@ has epochtime => (
     $GETOPT ? ( traits => [qw/ NoGetopt /] ) : (),
 );
 
+sub BUILD {}
+
 requires 'stringify';
 
 1;
@@ -118,6 +120,12 @@ Return the instance data as a plain data structure (hashref).
 =head2 pack
 
 Inflate an instance from a plain data structure (hashref).
+
+=head2 BUILD
+
+An empty build method (which will be silently discarded if you have one
+in your class) is provided, so that additional components can wrap it
+(to farce lazy attributes to be built).
 
 =head1 REQUIRED METHODS
 
