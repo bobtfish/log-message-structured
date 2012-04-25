@@ -5,8 +5,10 @@ use Test::More;
 {
     package TestEventSprintf;
     use Moose;
-    with qw/Log::Message::Structured::Stringify::AsJSON Log::Message::Structured/;
-    with qw(Log::Message::Structured::Component::Date);
+    with qw( Log::Message::Structured
+             Log::Message::Structured::Stringify::AsJSON
+          );
+    with qw( Log::Message::Structured::Component::Date);
 
     has [qw/foo bar baz/] => ( is => 'ro', required => 1);
 }
