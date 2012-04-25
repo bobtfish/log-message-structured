@@ -4,7 +4,13 @@ use namespace::autoclean;
 
 requires 'freeze';
 
-sub stringify { shift->freeze }
+around 'stringify' => sub {
+    my $orig = shift;
+    my $self = shift;
+    $self->freeze
+};
+
+#sub stringify { shift->freeze }
 
 1;
 
@@ -22,7 +28,6 @@ Log::Message::Structured::Stringify::AsJSON - JSON log lines
     use Moose;
     use namespace::autoclean;
 
-    # Note: you MUST compose these together as they depend on methods in each other
     with qw/
         Log::Message::Structured
         Log::Message::Structured::Stringify::AsJSON

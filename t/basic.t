@@ -6,8 +6,8 @@ use Test::More;
     package TestEvent;
     use Moose;
     with qw(Log::Message::Structured);
-    with qw(Log::Message::Structured::Component::Date);
-    with qw(Log::Message::Structured::Component::Hostname);
+    with qw(Log::Message::Structured::Component::Date
+            Log::Message::Structured::Component::Hostname);
 
     sub stringify { 'MOO' }
 

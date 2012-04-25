@@ -21,14 +21,27 @@ role {
     my $format_string = $p->format_string;
     my @attributes = $p->attributes->flatten;
 
-    requires $_ for grep { ! /^(hostname|date|epochtime)$/ } @attributes;
+    requires $_ for grep { $_ ne 'previous_string' } @attributes;
 
-    method stringify => sub {
+    has previous_string => (
+        isa => 'Str',
+        is => 'rw',
+        default => '',
+    );
+
+    around 'stringify' => sub {
+        my $orig = shift;
         my $self = shift;
-        # FIXME - Find the correct reader name rather than assuming
-        #         attribute name == accessor name.
-        sprintf($format_string, map { my $val = $self->$_; $val = 'undef' unless defined $val; $val } @attributes);
+        $self->previous_string($self->$orig(@_));
+        sprintf($format_string, map { defined() ? $_ : '<undef>' } map { $self->$_ } @attributes);
     };
+
+    # method stringify => sub {
+    #     my $self = shift;
+    #     # FIXME - Find the correct reader name rather than assuming
+    #     #         attribute name == accessor name.
+    #     sprintf($format_string, map { defined() ? $_ : '<undef>' } map { $self->$_ } @attributes);
+    # };
 };
 
 1;

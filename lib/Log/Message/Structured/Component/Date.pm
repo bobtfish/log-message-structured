@@ -36,7 +36,6 @@ Log::Message::Structured::Component::Date
     use Moose;
     use namespace::autoclean;
 
-    # Note: you MUST compose these together as they depend on methods in each other
     with qw/
         Log::Message::Structured
     /;

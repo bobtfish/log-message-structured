@@ -1,3 +1,5 @@
+  - stringify is not required anymore, the class can compose zero or more stringifiers now.
+
 0.006
   - Pull date and hostname attributes out into their own components,
     making them optional (dams).
