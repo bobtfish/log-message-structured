@@ -2,15 +2,20 @@ package Log::Message::Structured::Stringify::AsJSON;
 use Moose::Role;
 use namespace::autoclean;
 
-requires 'freeze';
+use JSON::Any;
+use utf8 ();
 
-around 'stringify' => sub {
+requires 'as_hash';
+
+around 'as_string' => sub {
     my $orig = shift;
     my $self = shift;
-    $self->freeze
+    my $hashref = $self->as_hash;
+    my $json = JSON::Any->objToJson( $hashref );
+    utf8::decode($json) if !utf8::is_utf8($json) and utf8::valid($json); # if it's valid utf8 mark it as such
+    return $json;
 };
 
-#sub stringify { shift->freeze }
 
 1;
 
@@ -45,18 +50,19 @@ Log::Message::Structured::Stringify::AsJSON - JSON log lines
 
 =head1 DESCRIPTION
 
-Implelements the C<stringify> method required by L<Log::Message::Structured>, by delegateing to
-the C<freeze> method provided by L<Log::Message::Structured>, and thus returning a JSON string.
+Augments the C<as_string> method provided by L<Log::Message::Structured> as a, by delegateing to
+the C<objToJson> from L<JSON::Any> module, and thus returning a JSON string.
 
 =head1 METHODS
 
-=head2 stringify
+=head2 as_string
 
-Calls the freeze method (provided by L<Log::Message::Structured> to return JSON.
+Returns the event as JSON
 
 =head1 AUTHOR AND COPYRIGHT
 
 Tomas Doran (t0m) C<< <bobtfish@bobtfish.net> >>.
+Damien Krotkine (dams) C<< <dams@cpan.org> >>.
 
 =head1 LICENSE
 

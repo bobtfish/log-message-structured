@@ -26,8 +26,4 @@ my $e = TestEventSprintf->new(foo => 2, bar => 3, baz => 4);
 ok $e;
 is $e.'', $exp;
 
-my $f = TestEventSprintf->thaw($e->freeze);
-is_deeply $f, $e;
-is $f.'', $exp;
-
 done_testing;

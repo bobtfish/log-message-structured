@@ -1,29 +1,26 @@
 package Log::Message::Structured;
 use MooseX::Role::WithOverloading;
-use MooseX::Storage;
 use namespace::clean -except => 'meta';
 
 our $VERSION = '0.007';
 $VERSION = eval $VERSION;
 
 use overload
-    q{""}    => 'stringify',
+    q{""}    => 'as_string',
     fallback => 1;
-
-with Storage('format' => 'JSON');
 
 my $GETOPT = do { local $@; eval { require MooseX::Getopt; 1 } };
 
-has epochtime => (
-    isa => 'Int',
-    is => 'ro',
-    default => sub { time() },
-    $GETOPT ? ( traits => [qw/ NoGetopt /] ) : (),
-);
-
 sub BUILD {}
 
-sub stringify { '' }
+sub as_string { '' }
+
+sub as_hash {
+    my ($self) = @_;
+    my $meta = $self->meta;
+    return { map { $_->has_read_method ? ($_->name, $_->get_read_method_ref->($self)) : () }
+             $meta->get_all_attributes };
+}
 
 1;
 
@@ -43,12 +40,9 @@ Log::Message::Structured - Simple structured log messages
 
     with qw/
         Log::Message::Structured
-        Log::Message::Structured::Stringify::AsJSON
-    /;
-    # Components must be consumed seperately
-    with qw/
         Log::Message::Structured::Component::Date
         Log::Message::Structured::Component::Hostname
+        Log::Message::Structured::Stringify::AsJSON
     /;
 
     has foo => ( is => 'ro', required => 1 );
@@ -92,32 +86,28 @@ L<Log::Message::Structured::Component::Hostname>
 
 =head1 ATTRIBUTES
 
-The basic Log::Message::Structured role provides the following read only attributes:
+The basic Log::Message::Structured role provides no attributes. See available
+components in L<Log::Message::Structured::Component::*> and consume them, or
+create attributes yourself, to enrich your class
 
-=head1 epochtime
-
-The date and time on which the event occurred, as an no of seconds since Jan 1st 1970 (i.e. the output of time())
 
 =head1 METHODS
 
 The only non-accessor methods provided are those composed from L<MooseX::Storage> related to serialization
 and deserialization.
 
-=head2 freeze
+=head2 as_string
 
-Return the instance as a JSON string.
+Returns the event as a string. By default, returns an empty string. However as the
+class composes stringifier roles, as_string will return the proper string
+representation of the event instance.
 
-=head2 thaw
+=head2 as_hash
 
-Inflate an instance of the class from a JSON string.
-
-=head2 pack
-
-Return the instance data as a plain data structure (hashref).
-
-=head2 pack
-
-Inflate an instance from a plain data structure (hashref).
+Returns the event as a hash. By default, returns a HashRef with all public
+attributes ( that have a getter setup ), and
+their values. However, as the class composes modifier roles, the hash (and thus
+the string representation) will be changed accordingly
 
 =head2 BUILD
 
@@ -127,11 +117,12 @@ in your class) is provided, so that additional components can wrap it
 
 =head1 REQUIRED METHODS
 
-=head2 stringify
+None.
 
-You B<must> implement a stringify method, or compose a stringification role for all L<Log::Message::Structured>
-events. This is so that events will always be meaningfully loggable be printing them to STDOUT or STDERR,
-or logging them in a traditional way in a file.
+=head1 OVERLOADING
+
+Log::Message::Structured overloads the stringify operator, and return the
+result of the C<as_string> method.
 
 =head1 A note about namespace::autoclean
 
@@ -154,6 +145,7 @@ instead in all classes using L<Log::Message::Structured>.
 =head1 AUTHOR AND COPYRIGHT
 
 Tomas Doran (t0m) C<< <bobtfish@bobtfish.net> >>.
+Damien Krotkine (dams) C<< <dams@cpan.org> >>.
 
 =head1 LICENSE
 
