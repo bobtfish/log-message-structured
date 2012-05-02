@@ -30,9 +30,6 @@ Log::Message::Structured::Component::Hostname
 
     with qw/
         Log::Message::Structured
-    /;
-    # Components must be consumed seperately
-    with qw/
         Log::Message::Structured::Component::Hostname
     /;
 

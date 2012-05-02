@@ -18,8 +18,8 @@ has time => (
 
 # FIXME - User running script?
 
-with qw( Log::Message::Structured );
-with qw( Log::Message::Structured::Component::Date
+with qw( Log::Message::Structured
+         Log::Message::Structured::Component::Date
          Log::Message::Structured::Component::Hostname
       );
 with 'Log::Message::Structured::Stringify::Sprintf' => {

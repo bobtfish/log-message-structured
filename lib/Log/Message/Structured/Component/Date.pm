@@ -7,6 +7,13 @@ use MooseX::Types::ISO8601 qw/ ISO8601DateTimeStr /;
 
 my $GETOPT = do { local $@; eval { require MooseX::Getopt; 1 } };
 
+has epochtime => (
+    isa => 'Int',
+    is => 'ro',
+    default => sub { time() },
+    $GETOPT ? ( traits => [qw/ NoGetopt /] ) : (),
+);
+
 has date => (
     is => 'ro',
     isa => ISO8601DateTimeStr,
@@ -17,8 +24,6 @@ has date => (
 );
 
 after BUILD => sub { shift()->date };
-
-requires 'epochtime';
 
 1;
 
@@ -38,9 +43,6 @@ Log::Message::Structured::Component::Date
 
     with qw/
         Log::Message::Structured
-    /;
-    # Components must be consumed seperately
-    with qw/
         Log::Message::Structured::Component::Date
     /;
 
@@ -56,10 +58,8 @@ Log::Message::Structured::Component::Date
 
 =head1 DESCRIPTION
 
-Provides a C<'date'> attribute to the consuming class ( probably
-L<Log::Message::Structured>), representing the epoch time in ISO8601.
-
-Requires the C<epochtime> attribute (L<Log::Message::Structured> provides it).
+Provides C<'epochtime'> and C<'date'> attributes to the consuming class ( that should also
+consume L<Log::Message::Structured>).
 
 =head1 METHODS
 
@@ -70,10 +70,16 @@ construction time.
 
 =head1 ATTRIBUTES
 
-=head1 date
+=head2 date
 
 The date and time on which the event occured, as an ISO8601 date time string
 (from L<MooseX::Types::ISO8601>). Defaults to the time the object is
+constructed.
+
+=head2 epochtime
+
+The date and time on which the event occurred, as an no of seconds since Jan
+1st 1970 (i.e. the output of time()). Defaults to the time the object is
 constructed.
 
 =head1 AUTHOR AND COPYRIGHT
