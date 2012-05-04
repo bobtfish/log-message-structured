@@ -14,7 +14,6 @@ requires 'MooseX::Storage' => '0.26';
 requires 'MooseX::Role::WithOverloading';
 requires 'MooseX::Types::ISO8601' => '0.02';
 requires 'MooseX::Role::Parameterized';
-requires 'Moose::Autobox';
 requires 'MooseX::Types';
 requires 'MooseX::Types::Common';
 requires 'DateTime';

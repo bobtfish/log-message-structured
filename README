@@ -62,9 +62,9 @@ METHODS
 
   as_hash
     Returns the event as a hash. By default, returns a HashRef with all
-    public attributes ( that have a getter setup ), and their values.
-    However, as the class composes modifier roles, the hash (and thus the
-    string representation) will be changed accordingly
+    attributes, and their values. However, as the class composes modifier
+    roles, the hash (and thus the string representation) will be changed
+    accordingly
 
   BUILD
     An empty build method (which will be silently discarded if you have one

@@ -17,9 +17,8 @@ sub as_string { '' }
 
 sub as_hash {
     my ($self) = @_;
-    my $meta = $self->meta;
-    return { map { $_->has_read_method ? ($_->name, $_->get_read_method_ref->($self)) : () }
-             $meta->get_all_attributes };
+    return { map { $_->name, $_->get_value($self) }
+             $self->meta->get_all_attributes };
 }
 
 1;
@@ -104,10 +103,9 @@ representation of the event instance.
 
 =head2 as_hash
 
-Returns the event as a hash. By default, returns a HashRef with all public
-attributes ( that have a getter setup ), and
-their values. However, as the class composes modifier roles, the hash (and thus
-the string representation) will be changed accordingly
+Returns the event as a hash. By default, returns a HashRef with all attributes,
+and their values. However, as the class composes modifier roles, the hash (and
+thus the string representation) will be changed accordingly
 
 =head2 BUILD
 
