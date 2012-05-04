@@ -1,3 +1,7 @@
+0.008
+  - new component to filter in / out attributes
+  - bugfixes
+
 0.007
   - stringify is not required anymore, the class can compose zero or more stringifiers now.
 
