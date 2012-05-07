@@ -2,7 +2,7 @@ package Log::Message::Structured;
 use MooseX::Role::WithOverloading;
 use namespace::clean -except => 'meta';
 
-our $VERSION = '0.008';
+our $VERSION = '0.009';
 $VERSION = eval $VERSION;
 
 use overload
