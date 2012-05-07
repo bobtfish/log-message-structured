@@ -16,6 +16,7 @@ requires 'MooseX::Types::ISO8601' => '0.02';
 requires 'MooseX::Role::Parameterized';
 requires 'MooseX::Types';
 requires 'MooseX::Types::Common';
+requires 'MooseX::Types::Structured';
 requires 'DateTime';
 requires 'Sys::Hostname';
 requires 'JSON::Any';
