@@ -136,7 +136,7 @@ instead in all classes using L<Log::Message::Structured>.
 
 =item L<Log::Message::Structured::Stringify::Sprintf>
 
-=item L<Log::Message::Structured::Stringify::JSON>
+=item L<Log::Message::Structured::Stringify::AsJSON>
 
 =back
 
