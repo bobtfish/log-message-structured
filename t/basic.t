@@ -21,4 +21,6 @@ foreach my $meth (qw/ as_string as_hash epochtime date hostname /) {
     ok $e->can($meth);
 }
 
+is $e->{class}, 'TestEvent';
+
 done_testing;

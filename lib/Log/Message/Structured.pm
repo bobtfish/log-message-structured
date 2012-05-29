@@ -9,6 +9,11 @@ use overload
     q{""}    => 'as_string',
     fallback => 1;
 
+has class => (
+  is => 'rw',
+  isa => 'Str',
+);
+
 my $GETOPT = do { local $@; eval { require MooseX::Getopt; 1 } };
 
 sub BUILD {}
@@ -20,6 +25,15 @@ sub as_hash {
     return { map { $_->name, $_->get_value($self) }
              $self->meta->get_all_attributes };
 }
+
+around BUILDARGS => sub {
+    my $orig  = shift;
+    my $class = shift;
+
+    my $attributes = $class->$orig(@_);
+    $attributes->{class} = $class;
+    return $attributes;
+};
 
 1;
 
@@ -85,10 +99,17 @@ L<Log::Message::Structured::Component::Hostname>
 
 =head1 ATTRIBUTES
 
-The basic Log::Message::Structured role provides no attributes. See available
-components in L<Log::Message::Structured::Component::*> and consume them, or
-create attributes yourself, to enrich your class
+Except for C<class>, the basic Log::Message::Structured role provides no
+attributes. See available components in
+L<Log::Message::Structured::Component::*> and consume them, or create
+attributes yourself, to enrich your class
 
+=head2 class
+
+Str,ro
+
+An attribute that returns the name of the class that were used when creating
+the instance.
 
 =head1 METHODS
 
