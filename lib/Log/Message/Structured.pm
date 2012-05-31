@@ -1,5 +1,6 @@
 package Log::Message::Structured;
 use MooseX::Role::WithOverloading;
+use Scalar::Util qw/ blessed /;
 use namespace::clean -except => 'meta';
 
 our $VERSION = '0.009';
@@ -10,8 +11,10 @@ use overload
     fallback => 1;
 
 has class => (
-  is => 'rw',
+  init_arg => undef,
+  is => 'ro',
   isa => 'Str',
+  default => sub { blessed $_[0] },
 );
 
 my $GETOPT = do { local $@; eval { require MooseX::Getopt; 1 } };
@@ -25,15 +28,6 @@ sub as_hash {
     return { map { $_->name, $_->get_value($self) }
              $self->meta->get_all_attributes };
 }
-
-around BUILDARGS => sub {
-    my $orig  = shift;
-    my $class = shift;
-
-    my $attributes = $class->$orig(@_);
-    $attributes->{class} = $class;
-    return $attributes;
-};
 
 1;
 
