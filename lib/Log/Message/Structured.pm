@@ -69,9 +69,11 @@ Logging lines to a file is a fairly useful and traditional way of recording what
 However, if you have another use for the same sort of data (for example, sending to another process via a
 message queue, or storing in L<KiokuDB>), then you can be needlessly repeating your data marshalling.
 
-Log::Message::Structured is a B<VERY VERY SIMPLE> set of roles to help you make small structured classes
-which represent 'C<< something which happened >>', that you can then either pass around in your application,
-log in a traditional manor as a log line, or serialize to JSON for transmission over the network.
+Log::Message::Structured is a B<VERY VERY SIMPLE> set of roles to help you make
+small structured classes which represent 'C<< something which happened >>',
+that you can then either pass around in your application, log in a traditional
+manor as a log line, or serialize to JSON or YAML for transmission over the
+network.
 
 =head1 COMPONENTS
 
@@ -88,6 +90,10 @@ L<Log::Message::Structured::Component::Date>
 =item *
 
 L<Log::Message::Structured::Component::Hostname>
+
+=item *
+
+L<Log::Message::Structured::Component::AttributesFilter>
 
 =back
 
@@ -152,6 +158,8 @@ instead in all classes using L<Log::Message::Structured>.
 =item L<Log::Message::Structured::Stringify::Sprintf>
 
 =item L<Log::Message::Structured::Stringify::AsJSON>
+
+=item L<Log::Message::Structured::Stringify::AsYAML>
 
 =back
 

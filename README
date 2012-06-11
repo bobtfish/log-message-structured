@@ -34,8 +34,8 @@ DESCRIPTION
     Log::Message::Structured is a VERY VERY SIMPLE set of roles to help you
     make small structured classes which represent '"something which
     happened"', that you can then either pass around in your application,
-    log in a traditional manor as a log line, or serialize to JSON for
-    transmission over the network.
+    log in a traditional manor as a log line, or serialize to JSON or YAML
+    for transmission over the network.
 
 COMPONENTS
     The consuming class can include components, that will provide additional
@@ -46,10 +46,19 @@ COMPONENTS
 
     *   Log::Message::Structured::Component::Hostname
 
+    *   Log::Message::Structured::Component::AttributesFilter
+
 ATTRIBUTES
-    The basic Log::Message::Structured role provides no attributes. See
-    available components in Log::Message::Structured::Component::* and
-    consume them, or create attributes yourself, to enrich your class
+    Except for "class", the basic Log::Message::Structured role provides no
+    attributes. See available components in
+    Log::Message::Structured::Component::* and consume them, or create
+    attributes yourself, to enrich your class
+
+  class
+    Str,ro
+
+    An attribute that returns the name of the class that were used when
+    creating the instance.
 
 METHODS
     The only non-accessor methods provided are those composed from
@@ -88,7 +97,8 @@ A note about namespace::autoclean
 
 SEE ALSO
     Log::Message::Structured::Stringify::Sprintf
-    Log::Message::Structured::Stringify::JSON
+    Log::Message::Structured::Stringify::AsJSON
+    Log::Message::Structured::Stringify::AsYAML
 
 AUTHOR AND COPYRIGHT
     Tomas Doran (t0m) "<bobtfish@bobtfish.net>". Damien Krotkine (dams)
