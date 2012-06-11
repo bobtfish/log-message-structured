@@ -43,11 +43,11 @@ my @attributes = (
   with 'Log::Message::Structured::Component::AttributesFilter' => { value => qr/^2$/ }; }
 
 my @expected = (
-{"barepub" => 1,"efg" => 1,"ropub" => 1,"hij" => 1,"abcd" => 1,"rwpub" => 1}, # public
+{class => 'TestEventAttributeFilter1', "barepub" => 1,"efg" => 1,"ropub" => 1,"hij" => 1,"abcd" => 1,"rwpub" => 1}, # public
 {"_barepriv" => 1,"_ropriv" => 1,"_rwpriv" => 1}, # private
-{abcd => 1, efg => 1, hij => 1, rwpub => 1, barepub => 1, ropub => 1}, # filter out
-{}, # custom
-{"barepub" => 1,"efg" => 1,"ropub" => 1,"hij" => 1,"abcd" => 1,"rwpub" => 1}, # ^[^_]
+{class => 'TestEventAttributeFilter3', abcd => 1, efg => 1, hij => 1, rwpub => 1, barepub => 1, ropub => 1}, # filter out
+{ }, # custom
+{class => 'TestEventAttributeFilter5', "barepub" => 1,"efg" => 1,"ropub" => 1,"hij" => 1,"abcd" => 1,"rwpub" => 1}, # ^[^_]
 {"abcd" => 1}, # ^abc
 {"efg" => 1}, # ^efg
 {"hij" => 2}, # $_ eq 2
