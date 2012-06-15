@@ -3,7 +3,7 @@ use MooseX::Role::WithOverloading;
 use Scalar::Util qw/ blessed /;
 use namespace::clean -except => 'meta';
 
-our $VERSION = '0.010';
+our $VERSION = '0.011';
 $VERSION = eval $VERSION;
 
 use overload
