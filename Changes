@@ -1,3 +1,11 @@
+0.010
+  - YAML stringifier
+  - Documentation fixes
+  - class name attribute added
+
+0.009
+  - added missing requirement
+
 0.008
   - new component to filter in / out attributes
   - bugfixes
