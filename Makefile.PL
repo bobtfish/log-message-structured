@@ -20,6 +20,7 @@ requires 'MooseX::Types::Structured';
 requires 'DateTime';
 requires 'Sys::Hostname';
 requires 'JSON::Any';
+requires 'YAML::Any';
 requires 'namespace::clean';
 requires 'namespace::autoclean';
 
