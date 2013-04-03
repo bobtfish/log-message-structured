@@ -7,7 +7,7 @@ use Module::Install::Authority;
 name 'Log-Message-Structured';
 author 'Tomas Doran (t0m) <bobtfish@bobtfish.net>';
 all_from 'lib/Log/Message/Structured.pm';
-authority 'BOBTFISH';
+authority 'cpan:BOBTFISH';
 
 requires 'Moose' => '2.0';
 requires 'MooseX::Storage' => '0.26';
