@@ -15,6 +15,16 @@ use Test::More;
 my $e = TestEventSprintf->new(foo => 2, bar => 3, baz => 4);
 ok $e;
 
-like "$e", qr/{"epochtime":\d+,"bar":3,"baz":4,"date":"[^"]+","foo":2,"class":"TestEventSprintf"}/;
+#{"epochtime":\d+,"bar":3,"baz":4,"date":"[^"]+","foo":2,"class":"TestEventSprintf"}/;
+
+foreach my $r ( qr/"epochtime":\d+/,
+                qr/"bar":3/,
+                qr/"baz":4/,
+                qr/"date":"[^"]+"/,
+                qr/"foo":2/,
+                qr/"class":"TestEventSprintf"/,
+              ) {
+    like "$e", $r;
+}
 
 done_testing;
