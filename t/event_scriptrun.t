@@ -13,6 +13,6 @@ my $m = Log::Message::Structured::Event::ScriptRun->new;
 
 is $m->script_name, 't/event_scriptrun.t';
 ok $m->time >= 2;
-is $m.'', 'Script t/event_scriptrun.t run on ' . hostname() . ' for ' . $m->time . 's';
+like $m.'', qr{Script t/event_scriptrun.t run on \w+ for \d+s by \w+};
 
 done_testing;
