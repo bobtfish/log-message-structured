@@ -79,11 +79,11 @@ parameterised Moose role.
 
 =head1 attributes
 
-Array of attributes whos values will be interpolated into the format string.
+Array of attributes whose values will be interpolated into the format string.
 
 =head2 format_string
 
-This format string is fed to sprintf with the values from the attributes to
+This format string is fed to C<sprintf()> with the values from the attributes to
 produce the output.
 
 =head1 AUTHOR AND COPYRIGHT

@@ -141,15 +141,15 @@ Enum : public, private. Filters on the attribute type
 
 =head2 name
 
-a RegexpRef or a CodeRef. Used to filter on the attribute name. The CodeRef will recieve the attribute's name in $_
+a RegexpRef or a CodeRef. Used to filter on the attribute name. The CodeRef will receive the attribute's name in C<$_>.
 
 =head2 value
 
-a RegexpRef or a CodeRef. Used to filter on the attribute value. The CodeRef will recieve the attribute's value in $_
+a RegexpRef or a CodeRef. Used to filter on the attribute value. The CodeRef will receive the attribute's value in C<$_>.
 
 =head2 custom
 
-a CodeRef. Used to do custom filtering. Will recieve the L<Class::MOP::Attribute> as first argument, and C<$self> as second argument.
+a CodeRef. Used to do custom filtering. Will receive the L<Class::MOP::Attribute> as first argument, and C<$self> as second argument.
 
 =head1 AUTHOR AND COPYRIGHT
 
