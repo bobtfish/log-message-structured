@@ -72,7 +72,7 @@ message queue, or storing in L<KiokuDB>), then you can be needlessly repeating y
 Log::Message::Structured is a B<VERY VERY SIMPLE> set of roles to help you make
 small structured classes which represent 'C<< something which happened >>',
 that you can then either pass around in your application, log in a traditional
-manor as a log line, or serialize to JSON or YAML for transmission over the
+manner as a log line, or serialize to JSON or YAML for transmission over the
 network.
 
 =head1 COMPONENTS
@@ -102,13 +102,13 @@ L<Log::Message::Structured::Component::AttributesFilter>
 Except for C<class>, the basic Log::Message::Structured role provides no
 attributes. See available components in
 L<Log::Message::Structured::Component::*> and consume them, or create
-attributes yourself, to enrich your class
+attributes yourself, to enrich your class.
 
 =head2 class
 
 Str,ro
 
-An attribute that returns the name of the class that were used when creating
+An attribute that returns the name of the class that was used when creating
 the instance.
 
 =head1 METHODS
@@ -132,7 +132,7 @@ thus the string representation) will be changed accordingly
 
 An empty build method (which will be silently discarded if you have one
 in your class) is provided, so that additional components can wrap it
-(to farce lazy attributes to be built).
+(to force lazy attributes to be built).
 
 =head1 REQUIRED METHODS
 
@@ -140,7 +140,7 @@ None.
 
 =head1 OVERLOADING
 
-Log::Message::Structured overloads the stringify operator, and return the
+Log::Message::Structured overloads the stringify operator, and returns the
 result of the C<as_string> method.
 
 =head1 A note about namespace::autoclean

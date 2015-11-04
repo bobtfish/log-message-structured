@@ -78,8 +78,8 @@ constructed.
 
 =head2 epochtime
 
-The date and time on which the event occurred, as an no of seconds since Jan
-1st 1970 (i.e. the output of time()). Defaults to the time the object is
+The date and time on which the event occurred, as the number of seconds since Jan.
+1st, 1970 (i.e. the output of C<time()>). Defaults to the time the object is
 constructed.
 
 =head1 AUTHOR AND COPYRIGHT

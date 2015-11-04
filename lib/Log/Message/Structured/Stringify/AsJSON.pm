@@ -50,14 +50,14 @@ Log::Message::Structured::Stringify::AsJSON - JSON log lines
 
 =head1 DESCRIPTION
 
-Augments the C<as_string> method provided by L<Log::Message::Structured> as a, by delegateing to
+Augments the C<as_string> method provided by L<Log::Message::Structured> by delegating to
 the C<objToJson> from L<JSON::Any> module, and thus returning a JSON string.
 
 =head1 METHODS
 
 =head2 as_string
 
-Returns the event as JSON
+Returns the event as JSON.
 
 =head1 AUTHOR AND COPYRIGHT
 

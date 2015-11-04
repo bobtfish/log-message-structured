@@ -54,7 +54,7 @@ a YAML string.
 
 =head2 as_string
 
-Returns the event as YAML
+Returns the event as YAML.
 
 =head1 AUTHOR AND COPYRIGHT
 
