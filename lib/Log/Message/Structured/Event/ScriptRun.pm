@@ -16,15 +16,19 @@ has time => (
     default => sub { time() - $starttime },
 );
 
-# FIXME - User running script?
+has user_name => (
+    is => 'ro',
+    isa => Str,
+    default => sub { $^O eq 'MSWin32' ? Win32::LoginName() : scalar getpwuid($<) }
+);
 
 with qw( Log::Message::Structured
          Log::Message::Structured::Component::Date
          Log::Message::Structured::Component::Hostname
       );
 with 'Log::Message::Structured::Stringify::Sprintf' => {
-    format_string => q{Script %s run on %s for %ss},
-    attributes => [qw/ script_name hostname time /],
+    format_string => q{Script %s run on %s for %ss by %s},
+    attributes => [qw/ script_name hostname time user_name/],
 };
 
 =head1 NAME
