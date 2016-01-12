@@ -1,3 +1,4 @@
+use strict;
 package Log::Message::Structured::Component::Date;
 use Moose::Role;
 use namespace::autoclean;
