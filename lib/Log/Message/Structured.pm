@@ -2,6 +2,7 @@ package Log::Message::Structured;
 use MooseX::Role::WithOverloading;
 use Scalar::Util qw/ blessed /;
 use namespace::clean -except => 'meta';
+use 5.008;
 
 our $VERSION = '0.012';
 $VERSION = eval $VERSION;
