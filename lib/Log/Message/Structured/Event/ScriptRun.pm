@@ -1,3 +1,4 @@
+use strict;
 package Log::Message::Structured::Event::ScriptRun;
 use Moose;
 use MooseX::Types::Moose qw/ Str Int /;

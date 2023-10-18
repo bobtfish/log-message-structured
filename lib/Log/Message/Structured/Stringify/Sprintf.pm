@@ -1,3 +1,4 @@
+use strict;
 package Log::Message::Structured::Stringify::Sprintf;
 use MooseX::Role::Parameterized;
 use MooseX::Types::Moose qw/ ArrayRef /;

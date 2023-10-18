@@ -1,3 +1,4 @@
+use strict;
 package Log::Message::Structured::Stringify::AsJSON;
 use Moose::Role;
 use namespace::autoclean;

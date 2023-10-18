@@ -1,3 +1,4 @@
+use strict;
 package Log::Message::Structured;
 use MooseX::Role::WithOverloading;
 use Scalar::Util qw/ blessed /;
